@@ -1,31 +1,30 @@
 ﻿<Properties StartupConfiguration="{E19A56B3-BAE2-4FAC-B4A0-3C8F8EA9CE2B}|https">
-  <MonoDevelop.Ide.DebuggingService.Breakpoints>
-    <BreakpointStore />
-  </MonoDevelop.Ide.DebuggingService.Breakpoints>
-  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
-  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
-  <MonoDevelop.Ide.ItemProperties.UserManagement PreferredExecutionTarget="/Applications/Google Chrome.app" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="UserManagement.Entity.Models/User.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="UserManagement/Controllers/UserController.cs">
     <Files>
-      <File FileName="UserManagement.Entity.SqlServer/UserManagementContext.cs" Line="15" Column="2" />
-      <File FileName="UserManagement.Entity.SqlServer/UserManagementContext.Extension.cs" Line="20" Column="2" />
-      <File FileName="UserManagement/Program.cs" Line="17" Column="40" />
-      <File FileName="UserManagement.Entity.Models/User.cs" Line="18" Column="31" />
+      <File FileName="UserManagement/Controllers/UserController.cs" Line="22" Column="1" />
+      <File FileName="UserManagement/Business Models/UserDtoCreate.cs" Line="25" Column="35" />
     </Files>
     <Pads>
       <Pad Id="ProjectPad">
         <State name="__root__">
           <Node name="UserManagement" expanded="True">
-            <Node name="UserManagement" expanded="True">
-              <Node name="Migrations" expanded="True" />
-            </Node>
-            <Node name="UserManagement.Entity.Models">
-              <Node name="User.cs" selected="True" />
+            <Node name="UsersManagement">
+              <Node name="Business Models" expanded="True" />
+              <Node name="Controllers" expanded="True">
+                <Node name="UserController.cs" selected="True" />
+              </Node>
+              <Node name="Services" expanded="True" />
             </Node>
           </Node>
         </State>
       </Pad>
     </Pads>
   </MonoDevelop.Ide.Workbench>
+  <MonoDevelop.Ide.ItemProperties.UsersManagement PreferredExecutionTarget="/Applications/Google Chrome.app" />
+  <MonoDevelop.Ide.DebuggingService.Breakpoints>
+    <BreakpointStore />
+  </MonoDevelop.Ide.DebuggingService.Breakpoints>
   <MultiItemStartupConfigurations />
+  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
 </Properties>

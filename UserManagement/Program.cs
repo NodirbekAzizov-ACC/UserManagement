@@ -1,4 +1,6 @@
-﻿var builder = WebApplication.CreateBuilder(args);
+﻿using UserManagement.Entity.SqlServer;
+
+var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 
@@ -6,6 +8,9 @@ builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
+
+builder.Services.AddUserManagementContext(connectionString:builder.Configuration.GetConnectionString("SqlServer")!,
+    nameOfAssembly: typeof(Program).Assembly.GetName().Name!);
 
 var app = builder.Build();
 

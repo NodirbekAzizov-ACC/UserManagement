@@ -1,19 +1,24 @@
 ﻿using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace UserManagement.Entity.Models
 {
+	[Table("Users")]
 	public class User
 	{
 		[Required]
-		public Guid UserID { get; set; }
+		public Guid UserId { get; set; }
+		[Required]
+		[MaxLength(30)]
+		public string UserName { get; set; } = string.Empty;
 		[Required]
 		[EmailAddress]
+		[MaxLength(50)]
 		public string Email { get; set; } = string.Empty;
-		[MaxLength(30)]
-		public string? Username { get; set; }
-		public int age { get; set; }
+		public int Age { get; set; }
 		[Phone]
 		public string? PhoneNumber { get; set; }
+		[MaxLength(30)]
 		public string? City { get; set; }
 	}
 }

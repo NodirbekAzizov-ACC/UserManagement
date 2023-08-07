@@ -6,7 +6,8 @@ namespace UserManagement.Entity.SqlServer
 {
 	public class UserManagementContext : DbContext
 	{
-		public UserManagementContext(DbContextOptions options) : base(options)
+		public UserManagementContext(DbContextOptions<UserManagementContext> options)
+			: base(options)
 		{
 		}
 		public DbSet<User> Users { get; set; }

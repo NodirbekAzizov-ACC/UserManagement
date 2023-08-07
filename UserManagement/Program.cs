@@ -1,4 +1,5 @@
 ﻿using UserManagement.Entity.SqlServer;
+using UserManagement.Services;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -11,7 +12,7 @@ builder.Services.AddSwaggerGen();
 
 builder.Services.AddUserManagementContext(connectionString:builder.Configuration.GetConnectionString("SqlServer")!,
     nameOfAssembly: typeof(Program).Assembly.GetName().Name!);
-
+builder.Services.AddScoped<ICSVService, CSVService>();
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.

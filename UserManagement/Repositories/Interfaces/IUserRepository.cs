@@ -11,6 +11,7 @@ namespace UsersManagement.Repositories.Interfaces
 		public void UpdateEntity(User user);
 		public void UpdateEntity(User oldEntity, User newEntity);
         public Task<User> GetUser(Guid ID);
+        public IEnumerable<User> GetAllUser(int numberOfRecords = default);
         public Task<int> SaveChangesAsync();
 	}
 }

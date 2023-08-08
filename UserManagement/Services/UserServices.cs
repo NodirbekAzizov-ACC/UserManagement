@@ -2,6 +2,7 @@
 using UserManagement.Entity.Models;
 using UserManagement.Services;
 using UsersManagement.BusinessModels;
+using UsersManagement.Helpers;
 using UsersManagement.Helpers.Exceptions;
 using UsersManagement.Repositories.Interfaces;
 
@@ -52,7 +53,25 @@ namespace UsersManagement.Services
             var users = _csvService.ReadCSV<UserDto>(file.OpenReadStream());
             return users ?? throw new NotFoundException();
         }
-        
+        public IEnumerable<User> GetUsersFromDatabase(int numberOfUsers = default, OrderBy orderBy = OrderBy.None)
+        {
+            if(numberOfUsers<0)
+            {
+                throw new BadRequestException($"{numberOfUsers} is not valid input for the current context");
+            }
+            List<User> users = orderBy switch
+            {
+                OrderBy.None when numberOfUsers == default => _repository.GetAllUser().ToList(),
+                OrderBy.None when numberOfUsers != default => _repository.GetAllUser(numberOfUsers).ToList(),
+                OrderBy.Ascending when numberOfUsers == default => _repository.GetAllUser().OrderBy(users => users.UserName).ToList(),
+                OrderBy.Ascending when numberOfUsers != default => _repository.GetAllUser(numberOfUsers).OrderBy(users => users.UserName).ToList(),
+                OrderBy.Descending when numberOfUsers == default => _repository.GetAllUser().OrderByDescending(users => users.UserName).ToList(),
+                OrderBy.Descending when numberOfUsers != default => _repository.GetAllUser(numberOfUsers).OrderByDescending(users => users.UserName).ToList()
+            };
+            return users is null
+                ? throw new NotFoundException("None record was found")
+                : users;
+        }
     }
 }
 

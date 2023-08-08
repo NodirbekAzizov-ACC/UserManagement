@@ -1,18 +1,10 @@
-﻿using UserManagement.Entity.SqlServer;
-using UserManagement.Services;
+﻿using UsersManagement.Helpers;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
+builder.Services.AddUserManagementAppServices(builder);
 
-builder.Services.AddControllers();
-// Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
-builder.Services.AddEndpointsApiExplorer();
-builder.Services.AddSwaggerGen();
-
-builder.Services.AddUserManagementContext(connectionString:builder.Configuration.GetConnectionString("SqlServer")!,
-    nameOfAssembly: typeof(Program).Assembly.GetName().Name!);
-builder.Services.AddScoped<ICSVService, CSVService>();
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.

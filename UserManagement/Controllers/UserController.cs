@@ -1,26 +1,40 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using UserManagement.Services;
-using UsersManagement.BusinessModels;
-
-// For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+using Microsoft.EntityFrameworkCore;
+using UsersManagement.Helpers.Exceptions;
+using UsersManagement.Services;
 
 namespace UserManagement.Controllers
 {
     [Route("api/[controller]")]
     public class UserController : Controller
     {
-        private readonly ICSVService _csvService;
-        public UserController(ICSVService csvService)
+        private readonly IUserServices _services;
+        public UserController(IUserServices services)
         {
-            _csvService = csvService;
+            _services = services;
         }
-
-        [HttpPost("/users/file")]
-        public async Task<IActionResult> GetUsersCSV([FromForm] IFormFileCollection file)
+        [HttpPut("/users")]
+        public async Task<IActionResult> UpdateDatabaseFromCsv([FromForm] IFormFileCollection file)
         {
-            var users = _csvService.ReadCSV<UserDtoCreate>(file[0].OpenReadStream());
+            try
+            {
+                if(!await _services.MergeFromCsvToDatabase(file[0]))
+                    return Ok("Database is Up-to-date");
+                return Ok("Database Updated Successfully");
+            }
 
-            return Ok(users);
+            catch(Exception ex) when (ex is BadRequestException)
+            {
+                return BadRequest(ex.Message);
+            }
+            catch (Exception ex) when (ex is NotFoundException)
+            {
+                return NotFound(ex.Message);
+            }
+            catch (Exception ex) when (ex is DbUpdateException)
+            {
+                return StatusCode(500, "There was problem with update of the database");
+            }
         }
     }
 }

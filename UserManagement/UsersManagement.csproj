@@ -16,6 +16,9 @@
       <PrivateAssets>all</PrivateAssets>
     </PackageReference>
     <PackageReference Include="CsvHelper" Version="30.0.1" />
+    <PackageReference Include="AutoMapper" Version="12.0.1" />
+    <PackageReference Include="AutoMapper.Extensions.Microsoft.DependencyInjection" Version="12.0.1" />
+    <PackageReference Include="AutoMapper.Attributes" Version="6.0.1" />
   </ItemGroup>
 
   <ItemGroup>
@@ -23,14 +26,27 @@
     <None Remove="Services\" />
     <None Remove="Business Models\UserDto.ca" />
     <None Remove="Business Models\" />
+    <None Remove="Repositories\" />
+    <None Remove="Repositories\Utilization\" />
+    <None Remove="Repositories\Interfaces\" />
+    <None Remove="Helpers\" />
+    <None Remove="Helpers\Exceptions\" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Controllers\" />
     <Folder Include="Services\" />
     <Folder Include="Business Models\" />
+    <Folder Include="Repositories\" />
+    <Folder Include="Repositories\Utilization\" />
+    <Folder Include="Repositories\Interfaces\" />
+    <Folder Include="Helpers\" />
+    <Folder Include="Helpers\Exceptions\" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\UserManagement.Entity.SqlServer\UserManagement.Entity.SqlServer.csproj">
+      <GlobalPropertiesToRemove></GlobalPropertiesToRemove>
+    </ProjectReference>
+    <ProjectReference Include="..\UserManagement.Entity.Models\UserManagement.Entity.Models.csproj">
       <GlobalPropertiesToRemove></GlobalPropertiesToRemove>
     </ProjectReference>
   </ItemGroup>

@@ -1,13 +1,16 @@
-﻿using System;
-using CsvHelper.Configuration.Attributes;
+﻿using CsvHelper.Configuration.Attributes;
+using AutoMapper.Attributes;
+using UserManagement.Entity.Models;
 
 namespace UsersManagement.BusinessModels
 {
-	public class UserDtoCreate
+
+	public class UserDto
 	{
 		[Index(1)]
 		[Name("useridentifier")]
-		public int UserIdentifier { get; set; }
+		[MapsToAndFromProperty(typeof(User), "UserId")]
+		public Guid UserIdentifier { get; set; }
 		[Index(0)]
 		[Name("username")]
 		public string UserName { get; set; }

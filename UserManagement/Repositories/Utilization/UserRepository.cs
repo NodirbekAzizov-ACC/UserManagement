@@ -16,6 +16,14 @@ namespace UsersManagement.Repositories.Utilization
 		{
 			return await _userCollection.FindAsync(ID);
 		}
-	}
+        public IEnumerable<User> GetAllUser(int numberOfRecords = default)
+        {
+			if(numberOfRecords == default)
+                return (from users in _userCollection
+                        select users);
+            return (from users in _userCollection
+                    select users).Take(numberOfRecords);
+        }
+    }
 }
 

@@ -10,7 +10,7 @@ namespace UsersManagement.Helpers
 		public EntityMapper()
 		{
 			CreateMap<UserDto, User>();
-		}
+        }
 	}
 }
 
